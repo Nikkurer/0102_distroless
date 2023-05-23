@@ -9,22 +9,23 @@ services:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     restart: unless-stopped
     environment:
-      - POSTGRES_PASSWORD="pass"
-      - POSTGRES_USER="user"
-      - POSTGRES_DB="app"
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
       
   app:
     image: app
+    container_name: app
     build: .
     ports:
-      - '${PORT}:${PORT}'
+      - '9000:9000'
     depends_on:
       - db
     restart: unless-stopped
     environment:
-      - POSTGRES_PASSWORD="pass"
-      - POSTGRES_USER="user"
-      - POSTGRES_DB="app"
-      - DB_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
-      - HOST="0.0.0.0"
-      - PORT="9000"
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - DB_URL
+      - HOST
+      - PORT
