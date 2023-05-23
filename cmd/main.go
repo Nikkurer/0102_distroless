@@ -28,7 +28,6 @@ func main() {
 
 	log.Print("starting: parse flags")
 	flag.Parse()
-	log.Print(*dbUrl)
 
 	log.Print("starting: create connection pool")
 	ctx := context.Background()
