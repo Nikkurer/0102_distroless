@@ -10,7 +10,6 @@ RUN go build -o /go/bin/app cmd/main.go
 # Now copy it into our base image.
 FROM gcr.io/distroless/base-debian11
 EXPOSE $PORT
-ARG ARCH=$(uname -m)
 COPY --from=builder /etc/passwd /etc/group /etc/
 COPY --from=builder /bin/sh /bin/sh
 COPY --from=builder /lib/ld-musl-* /lib/
